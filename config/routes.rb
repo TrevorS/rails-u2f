@@ -4,10 +4,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :pets
-
-  resources :u2f_authentication, only: :create
-  resources :u2f_registration, only: [:create, :destroy]
+  resources :users, only: :none do
+    resources :pets, shallow: true
+  end
 
   root to: 'pets#index'
 end
