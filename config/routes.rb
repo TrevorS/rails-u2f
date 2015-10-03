@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
   resources :pets
-  devise_for :users
+
+  resources :u2f_authentication, only: :create
+  resources :u2f_registration, only: [:create, :destroy]
+
   root to: 'pets#index'
 end
