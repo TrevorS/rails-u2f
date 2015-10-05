@@ -1,0 +1,8 @@
+<h1>U2F Authentication</h1>
+<p>Sign Requests: <%= @sign_requests.inspect %></p>
+
+<%= sign_requests_data(@sign_requests) %>
+
+<%= form_tag(user_u2f_authentications_path, id: 'u2f-auth-form') do %>
+  <%= hidden_field_tag(:response, nil, id: 'u2f-auth-form-response') %>
+<% end %>

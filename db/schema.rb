@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003181637) do
+ActiveRecord::Schema.define(version: 20151003202304) do
 
   create_table "pets", force: :cascade do |t|
     t.string   "color"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20151003181637) do
   end
 
   add_index "pets", ["user_id"], name: "index_pets_on_user_id"
+
+  create_table "u2f_devices", force: :cascade do |t|
+    t.string   "key_handle"
+    t.string   "public_key"
+    t.string   "certificate"
+    t.integer  "counter"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "u2f_devices", ["user_id"], name: "index_u2f_devices_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
