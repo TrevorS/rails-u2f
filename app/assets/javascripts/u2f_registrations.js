@@ -6,20 +6,15 @@ var ready = function() {
     var registrationRequests = $('#registrationRequests').data('requests');
     var signRequests         = $('#signRequests').data('requests');
 
-    console.log('registrationRequests', registrationRequests);
-    console.log('signRequests', signRequests);
-
     u2f.register(registrationRequests, signRequests, function(registerResponse) {
 
       if (registerResponse.errorCode) {
         var errorMessage = window.U2F_ERROR_CODES[registerResponse.errorCode];
-        console.log('errorMessage', errorMessage);
+        console.error('errorMessage', errorMessage);
         return;
       }
 
       response = $('#u2f-reg-form-response');
-
-      console.log('registerResponse', registerResponse);
 
       response.val(JSON.stringify(registerResponse));
 
